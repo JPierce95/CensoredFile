@@ -1,34 +1,36 @@
-//Author: Joshua E. Pierce
 #include <iostream>
 #include <fstream>
-#include <vector>
 
 using namespace std;
 
 int main()
 {
-  ifstream inFile;
-  char first = ' ', last = ' ', current;
-  vector <char> letters;
+        ifstream inFile;
+        char first = ' ', last = ' ', current;
 
-  inFile.open("example.txt");
+        inFile.open("example.txt");
 
-  while(!(inFile.eof())){
-    inFile >> current;
-    letters.push_back(current);
-  }
+        do{
+                inFile >> first;
+        }
+        while(!(first > 65 && first < 91)&&(first > 97 && first < 123));
 
-  inFile.close();
+        while(!(inFile.eof())){
+        inFile >> current;
+                if(!(current > 65 && current < 91)&&(current > 97 && current < 123)){
+                        last = current;
+                }
+        }
+
+        inFile.close();
 
 
-  //Read from the file opened by in, and the first letter (either upper or
-  //lower case) should be assigned to first and the last letter (again in
-  //either case) from the file to the variable last
+        //Read from the file opened by in, and the first letter (either upper or
+        //lower case) should be assigned to first and the last letter (again in
+        //either case) from the file to the variable last
 
+        //Then, finally, this displays the censored version:
+        cout<<first<<"**"<<last<<endl;
 
-
-  //Then, finally, this displays the censored version:
-  cout<<letters.at(0)<<"**"<<letters.at(letters.size() - 1)<<endl;
-
-  return 0;
+        return 0;
 }
